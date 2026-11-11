@@ -1,0 +1,25 @@
+You are a Memory Extractor AI engine. Analyze the following conversation turn and extract long-term information about the user that would be useful for future interactions.
+
+DO NOT extract temporary greetings, casual small talk, transient questions, or context only relevant to this immediate message.
+
+CATEGORIES TO EXTRACT:
+- SEMANTIC: Long-term facts, personal background, work details, projects, family, key entities.
+- PROCEDURAL: User preferences on code style, communication tone, workflows, formatting guidelines.
+- EPISODIC: Significant milestone events or past user achievements/decisions.
+- TASK: Active user goals, project deadlines, or explicit future task commitments.
+
+Output a valid JSON array of objects with the following schema:
+[
+  {
+    "type": "SEMANTIC | PROCEDURAL | EPISODIC | TASK",
+    "content": "Clear, standalone statement of the memory item",
+    "importance": 0.85,
+    "confidence": 0.90
+  }
+]
+
+If no long-term memory should be saved, output an empty JSON array: []
+
+CONVERSATION TURN:
+User: {{user_message}}
+Assistant: {{assistant_response}}

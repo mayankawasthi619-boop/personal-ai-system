@@ -1,0 +1,101 @@
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: personal-ai-backend
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+
+  # Java Virtual Threads (Loom) for optimized async execution
+  threads:
+    virtual:
+      enabled: ${VIRTUAL_THREADS_ENABLED:false}
+
+  # Database Setup
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/personal_ai_db}
+    username: ${DATABASE_USERNAME:postgres}
+    password: ${DATABASE_PASSWORD:postgres_secure_pass}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+  # Flyway Migrations
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 0
+    locations: classpath:db/migration
+
+  # Redis Caching
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      timeout: 2000ms
+
+  # File Upload Configuration
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+  # Spring AI Abstraction
+  ai:
+    ollama:
+      base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+      chat:
+        options:
+          model: ${DEFAULT_LOCAL_MODEL:llama3.2}
+          temperature: 0.7
+      embedding:
+        options:
+          model: ${DEFAULT_EMBEDDING_MODEL:nomic-embed-text}
+    openai:
+      api-key: ${OPENAI_API_KEY:demo-key}
+      chat:
+        options:
+          model: gpt-4o-mini
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+        dimensions: 1536
+
+# Security & Application Specific Settings
+app:
+  security:
+    jwt-secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+    jwt-expiration-ms: ${JWT_EXPIRATION_MS:604800000}
+    jwt-refresh-expiration-ms: ${JWT_REFRESH_EXPIRATION_MS:604800000}
+
+  ai:
+    mode: ${AI_SYSTEM_MODE:HYBRID} # LOCAL, CLOUD, HYBRID
+    prompt-path: ${PROMPT_PATH:./ai/prompts}
+    storage-path: ${STORAGE_ROOT_PATH:./data/documents}
+    sandbox-image: ${SANDBOX_IMAGE:python:3.11-slim}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always

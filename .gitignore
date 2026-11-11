@@ -1,0 +1,42 @@
+# Build outputs
+**/target/
+**/dist/
+**/build/
+**/out/
+
+# Dependencies
+**/node_modules/
+.pnpm-store/
+
+# Environment files & secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Persistent storage & user uploads
+/data/documents/
+data/
+uploads/
+
+# IDE & Editor files
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.project
+.classpath
+.settings/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs & temp files
+*.log
+logs/
+temp/
+tmp/
