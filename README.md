@@ -76,6 +76,32 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
+## 🌐 Cloud Deployment on Render
+
+This repository includes a native [render.yaml](render.yaml) Blueprint specification for zero-downtime automated cloud deployment.
+
+### 1-Click Deployment Steps:
+1. Log in to your [Render Dashboard](https://dashboard.render.com/).
+2. Click **New +** and select **Blueprint**.
+3. Connect your GitHub repository: [`mayankawasthi619-boop/personal-ai-system`](https://github.com/mayankawasthi619-boop/personal-ai-system).
+4. Render automatically parses `render.yaml` and provisions:
+   - **PostgreSQL Database** (`personal-ai-postgres` with `vector` extension support).
+   - **Backend Web Service** (`personal-ai-backend` Docker container with Spring Boot).
+   - **Frontend Client** (`personal-ai-frontend` React SPA with automatic backend URL linking).
+5. In the Render Dashboard, add your `OPENAI_API_KEY` (or Anthropic / Gemini key) in `personal-ai-backend` environment settings.
+6. Click **Apply**. Render will deploy your application and automatically redeploy whenever you push changes to GitHub!
+
+---
+
+## 🔄 Automatic GitHub Sync & CI/CD
+
+- **Repository**: [https://github.com/mayankawasthi619-boop/personal-ai-system](https://github.com/mayankawasthi619-boop/personal-ai-system)
+- **Continuous Integration**: Every `git push` to `main` triggers automated Maven unit testing and TypeScript frontend compilation via GitHub Actions.
+- **Continuous Deployment**: Render listens for GitHub push webhooks and redeploys the services automatically upon every commit.
+
+---
+
 ## 📜 License
 
 Distributed under the MIT License. See `LICENSE` for details.
+
