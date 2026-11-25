@@ -28,8 +28,9 @@ export const Header: React.FC<HeaderProps> = ({ title, selectedModel, onModelCha
             className="bg-transparent text-slate-200 font-medium focus:outline-none cursor-pointer"
           >
             <option value="auto">Auto (Hybrid Route)</option>
-            <option value="ollama:llama3.2">Ollama - Llama 3.2 (Local)</option>
+            <option value="gemini:gemini-1.5-flash">Google Gemini 1.5 Flash</option>
             <option value="gpt-4o-mini">OpenAI - GPT-4o Mini (Cloud)</option>
+            <option value="ollama:llama3.2">Ollama - Llama 3.2 (Local)</option>
           </select>
         </div>
       </div>

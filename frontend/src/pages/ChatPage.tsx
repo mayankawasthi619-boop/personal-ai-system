@@ -82,7 +82,7 @@ export const ChatPage: React.FC = () => {
           setMessages((prev) =>
             prev.map((msg) =>
               msg.id === assistantMsgId && !msg.content
-                ? { ...msg, content: "Hello! I am your Personal AI Assistant. How can I help you today?" }
+                ? { ...msg, content: "No response generated. Please check your model configuration or network connection." }
                 : msg
             )
           );

@@ -72,6 +72,10 @@ spring:
       chat:
         options:
           model: gpt-4o-mini
+    gemini:
+      api-key: ${GEMINI_API_KEY:}
+    groq:
+      api-key: ${GROQ_API_KEY:}
     vectorstore:
       pgvector:
         index-type: HNSW
@@ -99,3 +103,6 @@ management:
   endpoint:
     health:
       show-details: always
+  health:
+    redis:
+      enabled: false
