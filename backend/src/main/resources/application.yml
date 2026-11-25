@@ -16,9 +16,9 @@ spring:
 
   # Database Setup
   datasource:
-    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/personal_ai_db}
-    username: ${DATABASE_USERNAME:postgres}
-    password: ${DATABASE_PASSWORD:postgres_secure_pass}
+    url: ${spring.datasource.url:${DATABASE_URL:jdbc:postgresql://localhost:5432/personal_ai_db}}
+    username: ${spring.datasource.username:${DATABASE_USERNAME:postgres}}
+    password: ${spring.datasource.password:${DATABASE_PASSWORD:postgres_secure_pass}}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 20
