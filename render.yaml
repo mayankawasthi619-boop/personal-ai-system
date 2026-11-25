@@ -5,7 +5,7 @@ services:
     runtime: docker
     dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
-    plan: starter
+    plan: free
     region: oregon
     healthCheckPath: /actuator/health
     envVars:
@@ -55,7 +55,7 @@ services:
 
 databases:
   - name: personal-ai-postgres
-    plan: starter
+    plan: free
     region: oregon
     databaseName: personal_ai_db
     user: postgres
